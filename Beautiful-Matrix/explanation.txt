@@ -1,0 +1,53 @@
+✅ Given Question:
+You are given a 5x5 matrix with all 0s except for a single 1.
+
+Your task is to move the 1 to the center of the matrix (position (3, 3) using 1-based indexing).
+You can only move the 1 by swapping it with an adjacent element (up, down, left, or right).
+Each swap counts as one move.
+
+You must print the minimum number of moves required.
+
+✅ Given Data:
+You have:
+    - A 5x5 matrix (25 elements).
+    - Only one element in the matrix is 1; all others are 0.
+    - Target position of 1 is (3, 3) [center of matrix].
+    - You can move the 1 in 4 directions (1 move per step).
+
+✅ Intuition:
+Since the only allowed operation is moving the 1 in cardinal directions, the minimum moves 
+needed is simply the Manhattan distance between its current position and the center.
+
+Manhattan distance between (x, y) and (3, 3) is:
+    |x - 3| + |y - 3|
+
+So we just need to:
+    - Find where the 1 is in the matrix.
+    - Compute its distance from (3, 3).
+
+------------------------------------------------------------
+Approach:
+------------------------------------------------------------
+
+    - Step 1: Read the 5x5 matrix input using nested loops.
+    - Step 2: Track the (row, col) of the element that is 1.
+    - Step 3: Compute the Manhattan distance between (row, col) and (3, 3).
+    - Step 4: Print the result.
+
+✅ 🔍 Deep Dive:
+    - ✅ 1-based Indexing:
+        - The matrix positions are from (1,1) to (5,5).
+        - So center is at (3,3) — this is why we compare against 3.
+
+    - ✅ Why Manhattan Distance:
+        - Each move shifts the 1 by 1 cell horizontally or vertically.
+        - This is the definition of Manhattan distance.
+
+🕒 Time Complexity:
+    - O(1)
+        - Only 25 inputs are processed in a constant-sized grid.
+
+🧠 Space Complexity:
+    - O(1)
+        - No extra space used except for 2 integers (x, y).
+

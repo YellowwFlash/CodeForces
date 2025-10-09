@@ -1,0 +1,53 @@
+✅ Given Question:
+You are given `n` 3D vectors, each with x, y, and z components.
+
+Your task is to determine whether these vectors are in equilibrium, meaning:
+    - The sum of all x components = 0
+    - The sum of all y components = 0
+    - The sum of all z components = 0
+
+If the vector sum equals (0, 0, 0), print `"YES"`, otherwise print `"NO"`.
+
+✅ Given Data:
+You have:
+    - An integer `n` — the number of vectors.
+    - Each vector is a triplet of integers (x, y, z).
+    - Total `n` lines, each containing 3 integers.
+
+✅ Intuition:
+To be in equilibrium, the net force (sum of all vectors) must be 0 in all three directions.
+    - This is based on vector addition.
+    - So we can just add up each component separately:
+        - xSum = total of all x values
+        - ySum = total of all y values
+        - zSum = total of all z values
+    - If all three are zero, the system is balanced → print "YES".
+
+------------------------------------------------------------
+Approach:
+------------------------------------------------------------
+
+    - Step 1: Read the number of vectors (n).
+    - Step 2: Initialize 3 sum variables: xSum, ySum, zSum.
+    - Step 3: For each vector:
+        - Read x, y, z values.
+        - Add them to xSum, ySum, zSum respectively.
+    - Step 4: After the loop, check if all sums are zero.
+        - If yes → print "YES"
+        - Else → print "NO"
+
+✅ 🔍 Deep Dive:
+    - ✅ Vector Equilibrium:
+        - Comes from physics: when net force is 0 in all directions, system is at rest or in uniform motion.
+
+    - ✅ Why simple addition works:
+        - Because vectors can be added component-wise.
+        - Final position = sum of all displacements in x, y, and z.
+
+🕒 Time Complexity:
+    - O(n) → for reading and processing n vectors.
+
+🧠 Space Complexity:
+    - O(1)
+        - Only three integers used to store the sums.
+        - No additional data structures needed.
