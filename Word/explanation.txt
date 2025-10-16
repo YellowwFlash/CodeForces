@@ -1,0 +1,47 @@
+✅ Given Question:
+You are given a word consisting of only uppercase and lowercase English letters.
+You need to convert the word to either all uppercase or all lowercase.
+
+Rules:
+    - If the word has more uppercase letters → convert entire word to uppercase.
+    - Otherwise (lowercase count >= uppercase count) → convert to all lowercase.
+
+✅ Given Data:
+You have:
+    - A string `input` consisting of only uppercase/lowercase letters (no digits/symbols).
+    - No constraints on length, but typically reasonable (e.g., up to 100 characters).
+
+✅ Intuition:
+We just need to compare the number of uppercase and lowercase characters.
+Then, based on which count is higher, convert the whole string to:
+    - `input.toUpperCase()` if uppercase count is higher
+    - `input.toLowerCase()` otherwise
+
+------------------------------------------------------------
+Approach-1: Count and Compare
+------------------------------------------------------------
+
+    - Step 1: Initialize counters `upper` and `lower` to 0.
+    - Step 2: Traverse each character in the string:
+        - If it's between 'A' and 'Z', increment `upper`.
+        - Else, it's lowercase → increment `lower`.
+    - Step 3: Compare the counts:
+        - If `upper > lower`, convert to uppercase.
+        - Else, convert to lowercase.
+    - Step 4: Print the converted string.
+
+✅ 🔍 Deep Dive:
+    - ✅ Why not convert character-by-character?
+        - Java provides efficient built-in methods: `toUpperCase()` and `toLowerCase()`.
+    - ✅ Why >= for lowercase?
+        - In case of tie, the rule says to convert to lowercase.
+
+🕒 Time Complexity:
+    - O(n) → for traversing the string once to count characters.
+    - O(n) → for converting to upper/lower case (string transformation).
+    - Total: O(n)
+
+🧠 Space Complexity:
+    - O(n) → for the new string returned by `toUpperCase()` or `toLowerCase()`.
+    - O(1) → for counters `upper` and `lower` (constant space)
+

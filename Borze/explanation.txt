@@ -1,0 +1,57 @@
+✅ Given Question:
+You are given a string `morse` which is a mix of characters '.' and '-'.
+
+It encodes a number using the following rules:
+    - "." → 0
+    - "-." → 1
+    - "--" → 2
+
+Your task is to decode the string and print the resulting number.
+
+✅ Given Data:
+You have:
+    - A single string consisting of '.', '-' characters.
+    - You need to parse it **left to right**, identifying:
+        - Single dot ('.') → 0
+        - Dash-dot ('-.') → 1
+        - Dash-dash ('--') → 2
+
+✅ Intuition:
+The encoded number is a compressed form where:
+    - Some symbols represent 1 character (like '.')
+    - Others represent 2 characters (like '-.', '--')
+
+So, we need to simulate a parser:
+    - At each step, look at current character.
+    - If it’s '.', it's a 0.
+    - If it’s '-', check the **next** character to determine if it’s '1' or '2'.
+    - After consuming 2-character codes, skip the next character using `i++`.
+
+------------------------------------------------------------
+Approach-1: Simulation using Switch-Case
+------------------------------------------------------------
+
+    - Step 1: Initialize a `StringBuilder` to store the decoded output.
+    - Step 2: Loop through the string one character at a time:
+        - If char is '.', append "0".
+        - If char is '-', look at next character:
+            - If next is '.', it's "-." → append "1"
+            - If next is '-', it's "--" → append "2"
+            - Increment `i` to skip the second character in 2-char pattern.
+    - Step 3: Return the final string.
+
+✅ 🔍 Deep Dive:
+    - ✅ Greedy Parsing:
+        - Always match the smallest possible valid pattern left to right.
+    - ✅ Why `i++` after '-' case?
+        - Because we've already handled 2 characters, we move past both.
+
+🕒 Time Complexity:
+    - O(n)
+        - Each character is processed once.
+        - `i++` ensures no reprocessing of characters.
+    
+🧠 Space Complexity:
+    - O(n)
+        - For the output `StringBuilder`, storing the decoded result.
+

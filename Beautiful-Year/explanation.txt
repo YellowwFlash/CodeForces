@@ -1,0 +1,48 @@
+✅ Given Question:
+You're given a year as a 4-digit integer.
+You need to find the next year (strictly greater than the current one) 
+which has all unique digits — i.e., no repeated digits.
+
+✅ Given Data:
+You have:
+    - A 4-digit integer `year` (e.g., 1987).
+    - You must find the next year where all 4 digits are distinct.
+
+✅ Intuition:
+We need to check each year greater than the given year and determine if it has 4 distinct digits.
+The most straightforward way is:
+    - Start from `year + 1`.
+    - For each year, check whether all its digits are unique.
+    - Once found, print and exit.
+
+To check uniqueness:
+    - Convert the year to a string.
+    - Use a Set to store digits.
+    - If any digit is already present → not beautiful.
+
+------------------------------------------------------------
+Approach-1: Brute-force check using a HashSet
+------------------------------------------------------------
+
+    - Step 1: Start a loop from `year + 1` onward.
+    - Step 2: For each year, convert it to a string.
+    - Step 3: Use a HashSet to store digits:
+        - If all digits are inserted without duplicates → it's a beautiful year.
+    - Step 4: As soon as you find one, print and break.
+
+✅ 🔍 Deep Dive:
+    - ✅ Why use a HashSet?
+        - To efficiently track whether a digit has already appeared.
+        - Insertion and lookup both take O(1) time on average.
+    - ✅ Why convert to string?
+        - Makes it easy to loop over digits without extracting them manually.
+
+🕒 Time Complexity:
+    - O(1) amortized per year checked.
+        - Each year is 4 digits → checking uniqueness takes O(1) time.
+    - Worst-case: check up to 9000 years (if starting from 1000), so total: O(1) practically.
+
+🧠 Space Complexity:
+    - O(1)
+        - HashSet stores at most 4 digits → max 4 elements.
+        - No other significant space used.

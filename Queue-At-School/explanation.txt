@@ -1,0 +1,51 @@
+✅ Given Question:
+You are given a queue of schoolchildren represented by a string of length `n`:
+    - 'B' represents a boy
+    - 'G' represents a girl
+
+The queue evolves over time:
+    - Every second, any boy ('B') who is directly in front of a girl ('G') will let her move ahead.
+    - That is, for every "BG" pair in the queue (from left to right), swap them to become "GB".
+
+Given the initial state of the queue and an integer `t` representing time in seconds,
+you need to simulate the process and return the final state of the queue.
+
+✅ Given Data:
+You have:
+    - An integer `n` = number of children in the queue.
+    - An integer `t` = number of seconds the simulation runs.
+    - A string `queue` of length `n` containing only characters 'B' and 'G'.
+
+✅ Intuition:
+The queue updates every second by moving girls one position forward if there's a boy directly in front.
+Because each update only depends on the current second, we can simulate it step-by-step:
+    - At each second, loop through the queue from left to right.
+    - When you find "BG", swap them and skip the next index to avoid double-swapping.
+
+------------------------------------------------------------
+Approach-1: Simulation
+------------------------------------------------------------
+
+    - Step 1: Convert the string into a character array for easy swapping.
+    - Step 2: Repeat the following process `t` times:
+        - Traverse the array from left to right.
+        - Whenever a "BG" is found at index `j` and `j+1`:
+            - Swap `chars[j]` and `chars[j+1]` to become "GB"
+            - Skip the next index by doing `j++`
+    - Step 3: After all `t` seconds, convert the array back to string and return.
+
+✅ 🔍 Deep Dive:
+    - ✅ Why simulate for `t` seconds?
+        - Because the state of the queue depends on the swaps from the previous second.
+    - ✅ Why skip `j+1` after a swap?
+        - To prevent overlapping swaps in a single time unit.
+
+🕒 Time Complexity:
+    - O(n × t)
+        - For each of the `t` seconds, you traverse up to `n-1` elements.
+        - Acceptable because n, t ≤ 50 → max 2500 operations.
+
+🧠 Space Complexity:
+    - O(n)
+        - For the character array used to simulate swaps.
+

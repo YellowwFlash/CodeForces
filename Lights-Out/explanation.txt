@@ -1,0 +1,57 @@
+✅ Given Question:
+You are given a 3x3 grid of lights. Initially, all lights are ON (represented as 1).
+You are also given a 3x3 matrix where each cell contains a number (0–9) representing 
+how many times the button at that position is pressed.
+
+Rules:
+    - Pressing a button toggles (flips) the current light and its immediate neighbors
+      (up, down, left, right).
+    - Toggle means: 1 → 0, 0 → 1 (i.e., ON to OFF or OFF to ON)
+    - The presses only matter if the total number of presses at a cell is odd
+      (even number of presses cancel each other out).
+
+Goal:
+Print the final state of the 3x3 grid after applying all toggles.
+
+✅ Given Data:
+You have:
+    - A 3x3 matrix of integers indicating number of presses at each cell.
+    - All lights start as ON (i.e., `1`).
+
+✅ Intuition:
+- Each press toggles the current light and its 4-connected neighbors.
+- Even number of presses → no effect (because toggle twice = back to original)
+- So we only care about cells with **odd** number of presses.
+- For each such cell:
+    - Toggle the current cell and its up/down/left/right neighbors if within bounds.
+
+------------------------------------------------------------
+Approach-1: Using 2D Array and Simulation
+------------------------------------------------------------
+
+    - Step 1: Create a `lightsOut[3][3]` matrix initialized with all 1s (ON).
+    - Step 2: Loop through each cell of input matrix:
+        - If matrix[i][j] is odd:
+            - Toggle `lightsOut[i][j]` (current)
+            - Toggle top → if i-1 ≥ 0
+            - Toggle bottom → if i+1 < 3
+            - Toggle left → if j-1 ≥ 0
+            - Toggle right → if j+1 < 3
+    - Step 3: Print the final `lightsOut` matrix.
+
+✅ 🔍 Deep Dive:
+    - ✅ Why only odd presses?
+        - Pressing twice cancels out (ON → OFF → ON again).
+    - ✅ Why simulate?
+        - Because each toggle affects neighbors, we simulate each valid change directly.
+
+🕒 Time Complexity:
+    - O(1)
+        - Fixed size 3x3 grid → total 9 iterations regardless of input.
+        - Each toggle operation checks at most 4 neighbors → constant time.
+
+🧠 Space Complexity:
+    - O(1)
+        - `matrix[3][3]` → holds input
+        - `lightsOut[3][3]` → output grid
+        - Total constant space used (2 fixed 2D arrays of size 3x3)
